@@ -17,7 +17,9 @@ public class exe1 {
 		
 		int contador1 = 0;
 		int contador2 = 0;
-	
+		
+		
+		//Bucle sobre quien gana, pierde o empate.
 		
 		while (contador1 < 3 && contador2 < 3) {
 			System.out.println("pedra (0), paper (1), tisores (2): ");
@@ -39,7 +41,12 @@ public class exe1 {
 				System.out.println("El ordinador a guanyat.");
 				contador2++;
 			}
+			
+			//El jugador ha guanyat
+			
 		System.out.println("El jugador ha guanyat "+ contador1);
+		
+			//El ordinador ha guanyat
 		System.out.println("El ordinador ha guanyat  "+ contador2);
 		}
 		
