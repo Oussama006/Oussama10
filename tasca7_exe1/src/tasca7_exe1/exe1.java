@@ -42,11 +42,11 @@ public class exe1 {
 				contador2++;
 			}
 			
-			//El jugador ha guanyat
+			//El jugador gana
 			
 		System.out.println("El jugador ha guanyat "+ contador1);
 		
-			//El ordinador ha guanyat
+			//El ordinador gana
 		System.out.println("El ordinador ha guanyat  "+ contador2);
 		}
 		
