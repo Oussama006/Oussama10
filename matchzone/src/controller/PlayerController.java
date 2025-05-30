@@ -11,6 +11,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.event.ActionEvent;
 
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 
 import javafx.collections.FXCollections;
 import model.Player;
@@ -29,7 +31,6 @@ public class PlayerController {
     @FXML private TextField positionField;
     @FXML private TextField shirtField;
 
-    
     @FXML
     private void initialize() {
         colName.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -48,11 +49,10 @@ public class PlayerController {
         });
     }
 
-
     public void setStage(Stage stage) {
         this.stage = stage;
     }
-    
+
     @FXML
     private void addPlayer(ActionEvent event) {
         String name = nameField.getText();
@@ -60,7 +60,7 @@ public class PlayerController {
         String shirtNumberText = shirtField.getText();
 
         if (name.isEmpty() || position.isEmpty() || shirtNumberText.isEmpty()) {
-            System.out.println("Faltan datos.");
+            mostrarAlerta("Error", "Tots els camps han d'estar plens per afegir un jugador.");
             return;
         }
 
@@ -68,10 +68,10 @@ public class PlayerController {
             int shirtNumber = Integer.parseInt(shirtNumberText);
             Player newPlayer = new Player(name, position, shirtNumber, teamId);
             PlayerDAO.insertPlayer(newPlayer);
-            loadPlayers(); // refrescar
+            loadPlayers();
             clearForm();
         } catch (NumberFormatException e) {
-            System.out.println("Número de dorsal inválido.");
+            mostrarAlerta("Error", "El dorsal ha de ser un número enter.");
         }
     }
 
@@ -80,7 +80,7 @@ public class PlayerController {
         this.leagueId = leagueId;
         loadPlayers();
     }
-    
+
     private void loadPlayers() {
         playerTable.setItems(FXCollections.observableArrayList(PlayerDAO.getPlayersByTeamId(teamId)));
     }
@@ -95,7 +95,7 @@ public class PlayerController {
     private void updatePlayer(ActionEvent event) {
         Player selected = playerTable.getSelectionModel().getSelectedItem();
         if (selected == null) {
-            System.out.println("Ningún jugador seleccionado.");
+            mostrarAlerta("Error", "Has de seleccionar un jugador per modificar-lo.");
             return;
         }
 
@@ -104,7 +104,7 @@ public class PlayerController {
         String shirtNumberText = shirtField.getText();
 
         if (name.isEmpty() || position.isEmpty() || shirtNumberText.isEmpty()) {
-            System.out.println("Faltan datos.");
+            mostrarAlerta("Error", "Tots els camps han d'estar plens per modificar un jugador.");
             return;
         }
 
@@ -114,17 +114,23 @@ public class PlayerController {
             selected.setPosition(position);
             selected.setShirtNumber(shirtNumber);
             PlayerDAO.updatePlayer(selected);
-            loadPlayers(); // refrescar
+            loadPlayers();
             clearForm();
         } catch (NumberFormatException e) {
-            System.out.println("Número de dorsal inválido.");
+            mostrarAlerta("Error", "El dorsal ha de ser un número enter.");
         }
     }
 
-    private void clearForm() {
-        nameField.clear();
-        positionField.clear();
-        shirtField.clear();
+    @FXML
+    private void deletePlayer(ActionEvent event) {
+        Player selected = playerTable.getSelectionModel().getSelectedItem();
+        if (selected == null) {
+            mostrarAlerta("Error", "Has de seleccionar un jugador per eliminar-lo.");
+            return;
+        }
+
+        PlayerDAO.deletePlayer(selected.getPlayerId());
+        loadPlayers();
     }
 
     @FXML
@@ -134,20 +140,25 @@ public class PlayerController {
             Parent root = loader.load();
             TeamController controller = loader.getController();
             controller.setStage(stage);
-            controller.setLeagueId(leagueId); // ahora sí el ID correcto
+            controller.setLeagueId(leagueId);
             stage.setScene(new Scene(root));
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    
-    @FXML
-    private void deletePlayer(ActionEvent event) {
-        Player selected = playerTable.getSelectionModel().getSelectedItem();
-        if (selected != null) {
-            PlayerDAO.deletePlayer(selected.getPlayerId());
-            loadPlayers(); // recarga después de borrar
-        }
+
+    private void clearForm() {
+        nameField.clear();
+        positionField.clear();
+        shirtField.clear();
     }
 
+    // 🔔 Afegeix aquesta funció per mostrar alertes d’error
+    private void mostrarAlerta(String titol, String missatge) {
+        Alert alert = new Alert(AlertType.ERROR);
+        alert.setTitle(titol);
+        alert.setHeaderText(null);
+        alert.setContentText(missatge);
+        alert.showAndWait();
+    }
 }
