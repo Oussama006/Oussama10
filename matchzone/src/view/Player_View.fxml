@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?> <!-- ✅ ESTA LÍNEA FALTABA -->
+
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="controller.PlayerController">
+    <center>
+        <TableView fx:id="playerTable">
+            <columns>
+                <TableColumn fx:id="colName" text="Nom"/>
+                <TableColumn fx:id="colPosition" text="Posició"/>
+                <TableColumn fx:id="colShirt" text="Dorsal"/>
+            </columns>
+        </TableView>
+    </center>
+
+    <bottom>
+<HBox spacing="10">
+<padding>
+    <Insets top="10" right="10" bottom="10" left="10"/>
+</padding>
+
+    <TextField fx:id="nameField" promptText="Nom"/>
+    <TextField fx:id="positionField" promptText="Posició"/>
+    <TextField fx:id="shirtField" promptText="Dorsal"/>
+    <Button text="Afegir" onAction="#addPlayer"/>
+    <Button text="Modificar" onAction="#updatePlayer"/>
+    <Button text="Eliminar" onAction="#deletePlayer"/>
+    <Button text="Tornar enrere" onAction="#goBack"/>
+    
+    
+</HBox>
+
+    </bottom>
+</BorderPane>
