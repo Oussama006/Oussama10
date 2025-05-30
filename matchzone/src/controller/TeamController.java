@@ -11,6 +11,12 @@ import javafx.collections.FXCollections;
 import model.Team;
 import model.TeamDAO;
 
+/**
+ * Controlador para la vista de equipos.
+ * Muestra equipos según la liga seleccionada y abre la vista de jugadores.
+ */
+
+
 public class TeamController {
     private Stage stage;
     private int leagueId;
@@ -28,7 +34,6 @@ public class TeamController {
 
     @FXML
     private void initialize() {
-        // Esto puede estar vacío, solo para asegurar que el controlador esté listo antes de llamar setLeagueId
     }
 
     

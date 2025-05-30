@@ -11,6 +11,12 @@ import javafx.collections.FXCollections;
 import model.League;
 import model.LeagueDAO;
 
+/**
+ * Controlador para la vista de ligas.
+ * Muestra una lista de ligas y abre la vista de equipos al hacer doble clic.
+ */
+
+
 public class LeagueController {
     private Stage stage;
 

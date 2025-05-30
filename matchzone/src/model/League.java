@@ -1,5 +1,10 @@
 package model;
 
+/**
+ * Modelo que representa una liga.
+ */
+
+
 public class League {
     private int leagueId;
     private String name;

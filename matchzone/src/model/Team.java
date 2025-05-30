@@ -1,5 +1,10 @@
 package model;
 
+/**
+ * Modelo que representa un equipo.
+ */
+
+
 public class Team {
     private int teamId;
     private String name;
@@ -19,6 +24,6 @@ public class Team {
 
     @Override
     public String toString() {
-        return name; // Para que se muestre correctamente en el ListView
+        return name;
     }
 }

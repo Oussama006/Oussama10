@@ -18,6 +18,12 @@ import javafx.collections.FXCollections;
 import model.Player;
 import model.PlayerDAO;
 
+/**
+ * Controlador para la vista de jugadores.
+ * Permite agregar, modificar y eliminar jugadores de un equipo.
+ */
+
+
 public class PlayerController {
     private Stage stage;
     private int teamId;
@@ -153,7 +159,6 @@ public class PlayerController {
         shirtField.clear();
     }
 
-    // 🔔 Afegeix aquesta funció per mostrar alertes d’error
     private void mostrarAlerta(String titol, String missatge) {
         Alert alert = new Alert(AlertType.ERROR);
         alert.setTitle(titol);

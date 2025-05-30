@@ -9,6 +9,11 @@ import java.util.List;
 
 import util.DBConnection;
 
+/**
+ * Clase DAO para acceder a los datos de las ligas desde la base de datos.
+ */
+
+
 public class LeagueDAO {
     public static List<League> getAllLeagues() {
         List<League> leagues = new ArrayList<>();

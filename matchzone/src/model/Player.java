@@ -1,5 +1,10 @@
 package model;
 
+/**
+ * Modelo que representa un jugador.
+ */
+
+
 public class Player {
     private int playerId;
     private String name;

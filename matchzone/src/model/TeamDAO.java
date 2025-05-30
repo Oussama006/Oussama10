@@ -5,6 +5,11 @@ import java.util.ArrayList;
 import java.util.List;
 import util.DBConnection;
 
+/**
+ * Clase DAO para acceder a los datos de los equipos desde la base de datos.
+ */
+
+
 public class TeamDAO {
 
     public static List<Team> getTeamsByLeagueId(int leagueId) {

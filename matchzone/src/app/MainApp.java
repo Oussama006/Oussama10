@@ -7,6 +7,12 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
 
+/**
+ * Clase principal de la aplicación JavaFX.
+ * Carga la vista de ligas y lanza la interfaz principal.
+ */
+
+
 public class MainApp extends Application {
 
     public static void main(String[] args) {
@@ -22,8 +28,8 @@ public class MainApp extends Application {
             primaryStage.setScene(scene);
             primaryStage.setTitle("MatchZone");
             primaryStage.show();
-            primaryStage.setWidth(1000);  // o el ancho deseado
-            primaryStage.setHeight(300); // o la altura deseada
+            primaryStage.setWidth(1000);
+            primaryStage.setHeight(300);
 
 
             LeagueController controller = loader.getController();

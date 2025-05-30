@@ -4,6 +4,11 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+/**
+ * Clase utilitaria para establecer conexión con la base de datos SQLite.
+ */
+
+
 public class DBConnection {
 
     private static final String URL = "jdbc:sqlite:football.db";
